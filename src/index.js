@@ -1,30 +1,90 @@
 const inquirer = require('inquirer');
-// manager questions
-const managerQuestions = [
+const fs = require('fs');
+
+//generate the card for manager
+
+const managerCard = (manager) => {
+	return `<div class="col s12 m6">
+    <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+            <span class="card-title">${manager.name}</span>
+            <p>${manager.id}/p>
+        </div>
+        <div class="card-action">
+            <a href="mailto:">${manager.email}</a>
+            <p>${manager.number}</p>
+        </div>
+    </div>
+</div>`;
+};
+const engineerCard = (engineer) => {
+	if (each instanceof engineer) {
+		return `<div class="col s12 m6 l3">
+    <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+            <span class="card-title">${engineer.name}</span>
+            <p>${engineer.id}.No</p>
+        </div>
+        <div class="card-action">
+            <a href="https://github.com/${engineer.github}">github</a>
+            <a href="mailto:">${engineer.email}</a>
+        </div>
+    </div>
+</div>`;
+	}
+};
+const internCard = (intern) => {
+	if (each instanceof intern) {
+		return `<div class="col s12 m6 l3">
+    <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+            <span class="card-title">${intern.name}</span>
+            <p>${intern.id}.No</p>
+        </div>
+        <div class="card-action">
+            <p>${intern.school}</p>
+            <a href="mailto:">${intern.email}</a>
+        </div>
+    </div>
+</div>`;
+	}
+};
+
+// team name question
+const teamNameQuestion = [
+	{
+		type: 'confirm',
+		message: 'does your team have a name?',
+		name: 'confirmTeamName',
+	},
 	{
 		type: 'input',
 		message: 'please enter team name',
 		name: 'teamName',
+		when: (answers) => answers.confirmTeamName === true,
 	},
+];
+// manager questions
+const managerQuestions = [
 	{
 		type: 'input',
 		message: 'please enter manager name',
-		name: 'managerName',
+		name: 'name',
 	},
 	{
 		type: 'input',
 		message: 'please enter manager ID',
-		name: 'managerID',
+		name: 'id',
 	},
 	{
 		type: 'input',
 		message: 'please enter manager email',
-		name: 'managerEmail',
+		name: 'email',
 	},
 	{
 		type: 'input',
 		message: 'please enter manager office number',
-		name: 'managerNumber',
+		name: 'number',
 	},
 ];
 const confirmQuestion = [
@@ -41,22 +101,22 @@ const engineerQuestions = [
 	{
 		type: 'input',
 		message: 'please enter engineer name',
-		name: 'engineerName',
+		name: 'name',
 	},
 	{
 		type: 'input',
 		message: 'please enter engineer ID',
-		name: 'engineerID',
+		name: 'id',
 	},
 	{
 		type: 'input',
 		message: 'please enter engineer email',
-		name: 'engineerEmail',
+		name: 'email',
 	},
 	{
 		type: 'input',
 		message: 'please enter engineer github username',
-		name: 'engineerGithub',
+		name: 'github',
 	},
 ];
 
@@ -65,33 +125,45 @@ const internQuestion = [
 	{
 		type: 'input',
 		message: 'please enter intern name',
-		name: 'internName',
+		name: 'name',
 	},
 	{
 		type: 'input',
 		message: 'please enter intern ID',
-		name: 'internID',
+		name: 'id',
 	},
 	{
 		type: 'input',
 		message: 'please enter intern email',
-		name: 'internEmail',
+		name: 'email',
 	},
 	{
 		type: 'input',
 		message: 'please enter intern school',
-		name: 'internSchool',
+		name: 'school',
 	},
 ];
 
 const init = async () => {
 	// array to store engineers
-	const engineerArray = [];
+	const engineers = [];
 	// array to store interns
-	const internArray = [];
+	const interns = [];
+	// team name question
+	const { teamName, confirmTeamName } = await inquirer.prompt(
+		teamNameQuestion
+	);
+	if (!confirmTeamName) {
+		const team = 'team';
+		console.log(team);
+	} else {
+		const team = teamName;
+		console.log(team);
+	}
+
 	// manager's questions
-	// const managerAnswers = await inquirer.prompt(managerQuestions);
-	// console.log(managerAnswers);
+	const manager = await inquirer.prompt(managerQuestions);
+	console.log(manager);
 	let inProgress = true;
 	while (inProgress) {
 		const { proceed } = await inquirer.prompt(confirmQuestion);
