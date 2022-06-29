@@ -83,3 +83,34 @@ const internQuestion = [
 		name: 'internSchool',
 	},
 ];
+
+const init = async () => {
+	// array to store engineers
+	const engineerArray = [];
+	// array to store interns
+	const internArray = [];
+	// manager's questions
+	// const managerAnswers = await inquirer.prompt(managerQuestions);
+	// console.log(managerAnswers);
+	let inProgress = true;
+	while (inProgress) {
+		const { proceed } = await inquirer.prompt(confirmQuestion);
+		if (proceed === 'add an engineer') {
+			const engineerAnswers = await inquirer.prompt(engineerQuestions);
+			const engineer = engineerAnswers;
+			engineerArray.push(engineer);
+		}
+		if (proceed === 'add an intern') {
+			const internAnswers = await inquirer.prompt(internQuestions);
+			const intern = internAnswers;
+			internArray.push(intern);
+		}
+		if (proceed === 'quit application') {
+			inProgress = false;
+			console.log(engineerArray);
+			console.log(internArray);
+		}
+	}
+};
+
+init();
