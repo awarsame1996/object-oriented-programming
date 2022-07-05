@@ -71,7 +71,7 @@ const generateHtml = (manager, interns, engineers, team) => {
             <ul class="collapsible">
                 <li>
                     <div class="collapsible-header">
-                        <i class="material-icons">person</i>Manager
+                        <i class="material-icons center-align">person</i>Manager
                     </div>
                     <div class="collapsible-body">
                         <div class="row">
@@ -92,7 +92,7 @@ const generateHtml = (manager, interns, engineers, team) => {
                 </li>
                 <li>
                     <div class="collapsible-header">
-                        <i class="material-icons">build</i>Engineers
+                        <i class="material-icons center-align">build</i>Engineers
                     </div>
                     <div class="collapsible-body">
                         <div class="row">
@@ -102,7 +102,7 @@ const generateHtml = (manager, interns, engineers, team) => {
                 </li>
                 <li>
                     <div class="collapsible-header">
-                        <i class="material-icons">assignment_ind</i>Interns
+                        <i class="material-icons center-align">assignment_ind</i>Interns
                     </div>
                     <div class="collapsible-body">
                         <div class="row">
