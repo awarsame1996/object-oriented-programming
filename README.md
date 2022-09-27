@@ -11,6 +11,13 @@ npm run start
 
 
 ```
+## desktop view
+
+
+![Screenshot 2022-09-27 at 12 07 03](https://user-images.githubusercontent.com/100147237/192509942-caa5d857-809e-4a71-afd9-9589568b13bd.png)
+
+
+
 
 ## Video WalkThrough
 
